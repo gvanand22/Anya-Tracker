@@ -1,3 +1,3 @@
-# Anya-Tracker [<img alt="Anya" src="https://wallpapersafari.com/anya-forger-wallpapers/" width="100px" />](https://wallpapersafari.com/anya-forger-wallpapers/)
+# Anya-Tracker [<img alt="Anya" src="https://mcdn.wallpapersafari.com/medium/35/56/BSulty.jpg" width="100px" />](https://mcdn.wallpapersafari.com/medium/35/56/BSulty.jpg)
 
 A personalised activity tracker for improving my very own health
