@@ -1,4 +1,5 @@
 import {Router, Route, Routes, Link } from "react-router-dom";
+import Home from "./pages/home";
 
 function App() {
   return(
@@ -13,6 +14,13 @@ function App() {
             <li><Link to="/">Goals</Link></li>
             <li><Link to="/">Settings</Link></li>
           </ul>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home/>}/>
+          </Routes>
         </nav>
       </div>
     </Router>
