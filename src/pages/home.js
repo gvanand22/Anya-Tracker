@@ -1,3 +1,4 @@
+
 function Home() {
     return(
         <div className="Home">
@@ -42,6 +43,14 @@ function Home() {
                         <hr/>
                         <h4>Active Streak</h4>
                     </section>
+                </div>
+                <div className="grh_Tab" id="grh-Tab">
+                    <div className="grh_One">
+                        <h2>Weekly Distance</h2>    
+                    </div>
+                    <div className="grh_Two">
+                        <h2>Pace Trend</h2>
+                    </div>                    
                 </div>
             </main>
         </div>
