@@ -1,0 +1,206 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+/* Navbar */
+.nav_Bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* makes logo left, links right */
+  padding: 0.5rem 1rem;
+  width: 100%;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: white;
+  box-sizing: border-box;
+  border-bottom: .2vh solid white;
+}
+
+.an_Logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  gap: 0.5rem;
+}
+/* logo color */
+.run_Log{
+  color: aquamarine;
+}
+
+/* Make links take remaining space and space evenly */
+.nav-Links {
+  display: flex;
+  gap: 2rem;
+  flex-grow: 1;             /* occupy remaining space */
+  justify-content: space-evenly; /* distribute links evenly */
+  margin-left: 2rem;        /* space after logo */
+}
+
+/* Link styles */
+.nav-Links li a {
+  color: white;
+  transition: color 0.3s;
+}
+
+.nav-Links li a:hover {
+  color: #facc15;
+}
+
+/* Hamburger */
+.ham_Brg {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Home Tab */
+/* .Home{
+  min-width: 100%;
+  min-height: 100dvh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+} */
+ .Home {
+  width: 100%;
+  min-height: 100dvh;   /* better for mobile */
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* only horizontal center */
+  padding: 2rem 0;      /* prevents edge sticking */
+  /* background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); */
+}
+
+/* Activity Tabs */
+.tab_Grp{
+  width: 90vw;
+  height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+}
+
+/* tabs styling */
+.tab_One{
+  background: linear-gradient(45deg, #2f6bff 0%, #4a8cff 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+  /* width: 100%; */
+}
+.tab_Two{
+  background: linear-gradient(45deg, #2e8b57 0%, #6bcf63 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+}
+.tab_Thr{
+  background: linear-gradient(45deg, #ff7a18 0%, #ffb347 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+
+}
+.tab_For{
+  background: linear-gradient(45deg, #5b3cc4 0%, #8a63e8 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+}
+.tab_Fiv{
+  background: linear-gradient(45deg, #f4a300 0%, #ffd24c 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+}
+.tab_Six{
+  background: linear-gradient(45deg, #e53935 0%, #ff6a5c 100%);
+  text-align: center;
+  align-content: center;
+  padding: 1% 5%;
+  border-radius: 5%;
+  color: white;
+}
+
+/* Graph Tabs */
+.grh_Tab{
+  display: grid;
+  width: 90vw;
+  height: 30vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vw;
+  margin-top: 2vh;
+}
+
+.grh_One, .grh_Two{
+  background: linear-gradient(45deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); 
+  color: white;
+  text-align: center;
+  align-content: center;
+  border-radius: 5%;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .ham_Brg {
+    display: block;
+  }
+
+  .nav-Links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #0f172a;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .nav-Links.active {
+    display: flex;
+  }
+
+  .nav-Links li {
+    margin: 0.5rem 0;
+  }
+}
+@media (max-width: 600px){
+  .tab_Grp{
+    display: block;
+  }
+  .Home{
+    display: block;
+    min-height: max-content;
+  }
+  
+  .tab_Grp section{
+    min-height: 30vh;
+  }
+
+}

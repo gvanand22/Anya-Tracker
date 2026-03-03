@@ -1,0 +1,136 @@
+/* Backend */
+
+import express from "express";
+import fetch from "node-fetch";
+const app = express();
+
+const STRAVA_TOKEN = process.env.STRAVA_TOKEN; // keep secret
+
+app.get("/api/user-stats", async (req, res) => {
+  try {
+    const response = await fetch("https://www.strava.com/api/v3/athlete/stats", {
+      headers: {
+        Authorization: `Bearer ${STRAVA_TOKEN}`
+      }
+    });
+    const data = await response.json();
+    // Transform data to what frontend needs
+    res.json({
+      distance: (data.all_run_totals.distance / 1000).toFixed(2), // meters → km
+      duration: Math.floor(data.all_run_totals.moving_time / 60), // seconds → mins
+      calories: data.all_run_totals.calories || 0,
+      steps: 0, // Strava does not provide steps
+      date: new Date().toLocaleDateString(),
+      streak: 0
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch Strava data" });
+  }
+});
+
+app.listen(5000, () => console.log("Server running on port 5000"));
+
+/* Modified home.js */
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faCalendarDays
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faPersonWalkingDashedLineArrowRight,
+  faFire,
+  faShoePrints,
+  faArrowsSpin
+} from "@fortawesome/free-solid-svg-icons";
+
+function Home() {
+  const [stats, setStats] = useState({
+    distance: 0,
+    duration: 0,
+    calories: 0,
+    steps: 0,
+    date: "N/A",
+    streak: 0
+  });
+
+  useEffect(() => {
+    fetch("/api/user-stats")
+      .then((res) => res.json())
+      .then((data) => setStats(data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  return (
+    <div className="Home">
+      <main>
+        <div className="tab_Grp">
+          <section className="tab_One">
+            <h2>
+              <FontAwesomeIcon icon={faPersonWalkingDashedLineArrowRight} />{" "}
+              <span>{stats.distance}</span> Kms
+            </h2>
+            <hr />
+            <h4>Total Distance</h4>
+          </section>
+
+          <section className="tab_Two">
+            <h2>
+              <FontAwesomeIcon icon={faClock} /> <span>{stats.duration}</span>{" "}
+              Mins
+            </h2>
+            <hr />
+            <h4>Total Duration</h4>
+          </section>
+
+          <section className="tab_Thr">
+            <h2>
+              <FontAwesomeIcon icon={faFire} /> <span>{stats.calories}</span>{" "}
+              Kcal
+            </h2>
+            <hr />
+            <h4>Total Calories</h4>
+          </section>
+
+          <section className="tab_For">
+            <h2>
+              <FontAwesomeIcon icon={faShoePrints} /> <span>{stats.steps}</span>{" "}
+              Steps
+            </h2>
+            <hr />
+            <h4>Total Steps</h4>
+          </section>
+
+          <section className="tab_Fiv">
+            <h2>
+              <FontAwesomeIcon icon={faCalendarDays} />{" "}
+              <span>{stats.date}</span>
+            </h2>
+            <h4>Today</h4>
+          </section>
+
+          <section className="tab_Six">
+            <h2>
+              <FontAwesomeIcon icon={faArrowsSpin} /> <span>{stats.streak}</span>{" "}
+              Days
+            </h2>
+            <hr />
+            <h4>Active Streak</h4>
+          </section>
+        </div>
+
+        <div className="grh_Tab">
+          <div className="grh_One">
+            <h2>Weekly Distance</h2>
+          </div>
+          <div className="grh_Two">
+            <h2>Pace Trend</h2>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default Home;
