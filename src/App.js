@@ -10,6 +10,7 @@ import Activity from "./pages/activity";
 import Analytics from "./pages/analytics";
 import Goals from "./pages/goals";
 import Settings from "./pages/settings";
+import ExchangeToken from "./pages/ExchangeToken";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,7 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/exchange_token" element={<ExchangeToken />} />
         </Routes>
       </div>
     </Router>
